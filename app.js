@@ -7,6 +7,7 @@ App({
 
   // 全局变量，获取方法getApp().globalData
   globalData: {
+    name:'',
     // 域名，用于发送请求
     host: 'http://121.199.31.107:8081',
     // 组织名称，显示在免登页
