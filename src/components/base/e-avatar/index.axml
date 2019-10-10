@@ -1,0 +1,9 @@
+<view class="flex items-center {{className}}">
+  <!-- 头像 -->
+  <view class="circle overflow-hidden shadow-md" catchTap="handleTap">
+    <image a:if="{{user.avatar || userInfo.avatar}}" class="block" style="height: {{size}}rpx; width: {{size}}rpx;" mode="aspectFill" src="{{user.avatar || userInfo.avatar}}"/>
+    <view a:else class="bg-color-primary color-white text-2xl flex items-center justify-center" style="height: {{size}}rpx; width: {{size}}rpx;">{{user.name[0] || userInfo.name[0]}}</view>
+  </view>
+  <!-- 插槽，优先使用user -->
+  <slot userInfo="{{user.name ? user : userInfo}}"></slot>
+</view>

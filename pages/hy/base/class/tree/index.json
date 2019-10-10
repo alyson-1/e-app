@@ -1,0 +1,6 @@
+{
+  "pullRefresh": true,
+  "usingComponents":{ 
+    "e-breadcrumb": "/src/components/base/e-breadcrumb/index"
+  }
+}

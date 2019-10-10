@@ -1,0 +1,1 @@
+<e-list bizObj="{{bizObj}}" btnPos="{{btnPos}}" background="{{background}}" searchBar="{{searchBar}}"></e-list>

@@ -1,0 +1,41 @@
+<view id="{{params.id}}" class="input-wrapper">
+  <view class="content-wrapper">
+    <view class="files-wrapper" onLongTap="chooseType" onTouchStart="touchStart">
+      <text class="color-text" a:if="{{!params.files.length}}">长按此区域上传{{params.label}}</text>
+      <scroll-view class="files" scroll-y="{{true}}" style="display: {{params.files.length ? 'inline' : 'none'}}">
+        <view class="file-item" a:for="{{params.files}}">
+          <view style="right: {{100 - item.status + '%'}}" class="progress-bar"></view>
+          <image class="icon-32rpx zIndex2" src="/common/icon/form/file.png" mode="aspectFit" />
+          <view class="no-wrap zIndex2" style="flex: 1; margin: 0 8rpx;" onTap="openFile" data-file-index="{{index}}">
+            <text class="font-small">{{item.name}}</text>
+          </view>
+          <view class="icon-32rpx zIndex2" a:if="{{item.status === 100}}" onTap="deleteFile" data-file-index="{{index}}">
+            <image class="icon-32rpx" src="/common/icon/form/file-clear.png" mode="aspectFit" />
+          </view>
+        </view>
+      </scroll-view>
+      <view class="notice" catchTap="showSetting">
+        <image class="icon-36rpx" src="/common/icon/form/question.png" mode="aspectFit"/>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="uploader-wrapper full-screen {{openTypeChooser ? 'uploader-wrapper-open' : ''}}">
+  <view class="uploader-btns" style="left: {{pos.pageX + 'px'}}; top: {{pos.pageY + 'px'}};">
+    <button class="uploader-btn icon-96rpx circle-btn shadow-btn {{openTypeChooser ? 'uploader-btn-show' : ''}}" style="margin: 0 8rpx 8rpx 0; transition-delay: .1s; background-color: rgb(244,208,101);" onTap="selectImage">
+      <text style="font-size: 48rpx;" class="fa fa-photo"></text>
+    </button>
+    <button class="uploader-btn icon-96rpx circle-btn shadow-btn {{openTypeChooser ? 'uploader-btn-show' : ''}}" style="margin: 0 0 8rpx 8rpx; transition-delay: .2s; background-color: rgb(254,67,101);" onTap="selectAudio">
+      <text style="font-size: 48rpx;" class="fa fa-music"></text>
+    </button>
+    <button class="uploader-btn icon-96rpx circle-btn shadow-btn {{openTypeChooser ? 'uploader-btn-show' : ''}}" style="margin: 8rpx 8rpx 0 0;" type="primary" onTap="closeChooseType">
+      <text style="font-size: 48rpx;" class="fa fa-times"></text>
+    </button>
+    <button class="uploader-btn icon-96rpx circle-btn shadow-btn {{openTypeChooser ? 'uploader-btn-show' : ''}}" style="margin: 8rpx 0 0 8rpx; transition-delay: .3s; background-color: rgb(69,137,148);" onTap="selectVideo">
+      <text style="font-size: 48rpx;" class="fa fa-video-camera"></text>
+    </button>
+  </view>
+</view>
+<e-modal title="上传设置" show="{{openModal}}" onModalClick="onModalClick" onModalClose="onModalClose">
+  <text>设置条件</text>
+</e-modal>

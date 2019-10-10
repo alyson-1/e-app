@@ -1,0 +1,9 @@
+<view class="{{model.sfi !== undefined ? 'relative border-bottom' : 'mb-3'}} p-2 text-base flex items-center bg-color-white">
+  <view class="flex items-center w-24" hidden="{{!model.label}}">
+    <view class="w-2 h-4 color-danger flex items-center justify-center invisible"/>
+    <text class="flex-1 h-4 no-wrap {{model.disabled ? 'color-label' : 'color-title'}}">{{model.label}}{{model.showValue ? model.value + model.unit : ''}}</text>
+  </view>
+  <view class="{{model.disabled ? 'pointer-events-none' : ''}} flex-1">
+    <slider onChange="handleChange" style="margin-top: 4rpx; margin-bottom: 12rpx; padding-right: 20rpx; padding-left: 28rpx;" value="{{model.value}}" trackSize="4" handleSize="20" step="{{model.step}}" min="{{model.min}}" max="{{model.max}}" activeColor="{{model.activeColor}}" backgroundColor="{{model.backgroundColor}}" handleColor="{{model.handleColor}}" disabled="{{model.disabled}}"/>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+{
+	"name": "eapp",
+	"version": "1.0.0",
+	"description": "[查看文档](https://cjl255352.github.io/docs/e-app/)",
+	"main": "app.js",
+	"scripts": {},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"dingui-mini": "^1.4.4",
+		"eventemitter3": "^3.1.2"
+	},
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/cjl255352/e-app.git"
+	},
+	"bugs": {
+		"url": "https://github.com/cjl255352/e-app/issues"
+	},
+	"homepage": "https://github.com/cjl255352/e-app#readme"
+}

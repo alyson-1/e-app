@@ -1,0 +1,10 @@
+<view class="{{model.sfi !== undefined ? 'relative border-bottom' : 'mb-3'}} p-2 text-base flex items-center bg-color-white">
+  <view class="flex items-center w-24" hidden="{{!model.label}}">
+    <view class="w-2 h-4 color-danger flex items-center justify-center invisible"/>
+    <text class="flex-1 h-4 no-wrap {{model.disabled ? 'color-label' : 'color-title'}}">{{model.label}}</text>
+  </view>
+  <input class="pr-2 pl-1 py-0 h-7 bg-opacity flex-1 pointer-events-none" value="{{model.checked ? model.trueLabel : model.falseLabel}}"/>
+  <view class="flex flex-1 h-7 items-center justify-end">
+    <switch onChange="switchChange" checked="{{model.checked}}" disabled="{{model.disabled}}" color="{{model.color}}"/>
+  </view>
+</view>

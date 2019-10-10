@@ -1,0 +1,19 @@
+{
+	"component": true,
+	"usingComponents": {
+		"e-input": "/src/components/base/e-input/index",
+		"e-address": "/src/components/base/e-address/index",
+		"e-cascader": "/src/components/base/e-cascader/index",
+		"e-date-picker": "/src/components/base/e-date-picker/index",
+		"e-dept-chooser": "/src/components/base/e-dept-chooser/index",
+		"e-picker": "/src/components/base/e-picker/index",
+		"e-progress-bar": "/src/components/base/e-progress-bar/index",
+		"e-scan": "/src/components/base/e-scan/index",
+		"e-search": "/src/components/base/e-search/index",
+		"e-switch": "/src/components/base/e-switch/index",
+		"e-text-area": "/src/components/base/e-text-area/index",
+		"e-user-chooser": "/src/components/base/e-user-chooser/index",
+		"e-loader": "/src/components/base/e-loader/index",
+    "e-interval": "/src/components/base/e-interval/index"
+	}
+}

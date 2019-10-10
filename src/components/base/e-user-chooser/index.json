@@ -1,0 +1,6 @@
+{
+	"component": true,
+	"usingComponents": {
+		"e-avatar": "/src/components/base/e-avatar/index"
+	}
+}

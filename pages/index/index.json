@@ -1,0 +1,6 @@
+{
+	"allowsBounceVertical": "NO",
+	"usingComponents": {
+		"e-loader": "/src/components/base/e-loader/index"
+	}
+}

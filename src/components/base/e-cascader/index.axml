@@ -1,0 +1,28 @@
+<view class="{{model.sfi !== undefined ? 'relative border-bottom' : 'mb-3'}} p-2 text-base flex items-center bg-color-white" onTap="handleOpen" onLongTap="clear">
+  <view class="flex items-center w-24" hidden="{{!model.label}}">
+    <view class="w-2 h-4 color-danger flex items-center justify-center" style="visibility: {{model.necessary ? 'visible' : 'hidden'}};">*</view>
+    <text class="flex-1 h-4 no-wrap {{model.disabled ? 'color-label' : 'color-title'}}">{{model.label}}</text>
+  </view>
+  <input class="pr-2 pl-1 py-0 h-7 bg-opacity flex-1 pointer-events-none" value="{{model.bindkey ? model.value[model.bindkey] : model.value}}" placeholder="{{model.placeholder}}" />
+  <view class="flex items-center justify-center h-5 w-5 color-title">
+    <image class="w-4 h-4" mode="scaleToFill" src="/src/assets/icon/base/right.png"/>
+  </view>
+</view>
+<view class="fixed pin z-2 flex items-center justify-center transition-300 {{cascaderVisible ? 'bg-color-sub-title pointer-events-auto' : 'pointer-events-none'}}">
+  <view class="flex flex-col w-4-5 h-3-5 radius-2 overflow-hidden bg-color-white transition-300 shadow-md" style="transform: {{cascaderVisible ? 'translate3d(0, 0, 0)' : 'translate3d(113%, 0, 0)'}};">
+    <e-breadcrumb values="{{breadcrumb}}" className="relative border-bottom" onItemTap="handleBreadcrumbTap"/>
+    <scroll-view class="flex flex-1 flex-col" scroll-y="{{true}}">
+      <view class="flex items-center mx-2 mb-2 {{index === 0 ? 'mt-2' : ''}}" a:for="{{array}}" data-item-index="{{index}}" onTap="radioChange">
+        <image class="w-5 h-5 mr-2" mode="scaleToFill" src="/src/assets/icon/list/{{currentIndex === index ? 'round_check_fill' : 'round'}}.png"/>
+        <text class="color-title flex-1 mr-2">{{model.bindkey ? item[model.bindkey] : item}}</text>
+        <view class="color-primary flex items-center" data-item-index="{{index}}" catchTap="handleNext" a:if="{{!model.last && item.children.length}}">
+          <text class="fa fa-level-down"/>下级
+        </view>
+      </view>
+    </scroll-view>
+    <view class="relative border-top flex">
+      <button class="radius-none w-1-2 border-none bg-opacity color-primary" onTap="handleClose">取消</button>
+      <button class="radius-none w-1-2 border-none bg-opacity color-primary" onTap="handleSelect">确定</button>
+    </view>
+  </view>
+</view>

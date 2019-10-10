@@ -1,0 +1,9 @@
+{
+  "pullRefresh": true,
+  "usingComponents":{
+    "e-list": "/src/components/e-list/index",
+    "e-dialog": "/src/components/base/e-dialog/index",
+    "e-picker": "/src/components/base/e-picker/index",
+    "e-date-picker": "/src/components/base/e-date-picker/index"
+  }
+}

@@ -1,0 +1,11 @@
+<!-- 系统加载页面 -->
+<view class="fixed pin flex items-center justify-center" style="background: {{background}}">
+  <!-- loader -->
+  <e-loader type="{{type}}" loading="{{loading}}" loadingText="{{loadingText}}"/>
+  <view a:if="{{logo || corp}}" class="absolute pin-b flex flex-col items-center">
+    <!-- 组织logo -->
+    <image a:if="{{logo}}" class="w-12 mb-2" mode="widthFix" src="{{logo}}"/>
+    <!-- 组织名称 -->
+    <text a:if="{{corp}}" class="mb-2 color-label text-xs">{{corp}}</text>
+  </view>
+</view>

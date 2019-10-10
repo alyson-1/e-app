@@ -1,0 +1,6 @@
+{
+	"component": true,
+	"usingComponents": {
+		"e-loader": "/src/components/base/e-loader/index"
+	}
+}

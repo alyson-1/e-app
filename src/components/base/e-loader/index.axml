@@ -1,0 +1,5 @@
+<view class="flex flex-col items-center {{className}}">
+  <view a:if="{{loading}}" class="loader-{{type}}" style="color: {{color}}; font-size: {{size}}rpx;"/>
+  <text a:if="{{loading && loadingText}}" class="text-xs mt-2" style="color: {{textColor}};">{{loadingText}}</text>
+  <text a:if="{{noMore}}" class="text-xs" style="color: {{textColor}};">{{noMoreText}}</text>
+</view>

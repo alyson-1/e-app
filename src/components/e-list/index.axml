@@ -1,0 +1,82 @@
+<!-- 载入模板 -->
+<import src="./template/index.axml"/>
+<!-- 列表组件 -->
+<view class="absolute pin flex flex-col overflow-x-hidden" style="background: {{background}}" onTouchMove="handleTouchMove" onTouchEnd="handleTouchEnd">
+  <!-- 搜索、过滤按钮 -->
+  <view style="height: 104rpx;" class="flex p-2 relative border-bottom">
+    <block a:if="{{!searchVisible}}">
+      <view class="h-9 w-1-2 flex items-center justify-center" onTap="handleSearchVisible">
+        <image class="w-5 h-5 mr-2" mode="scaleToFill" src="/src/assets/icon/list/search.png"/>
+        <text style="color: #8a8a8a;">搜索</text>
+      </view>
+      <view class="h-9 w-1-2 flex items-center justify-center" onTap="handleFilterVisible">
+        <image class="w-5 h-5 mr-2" mode="scaleToFill" src="/src/assets/icon/list/filter.png"/>
+        <text style="color: #8a8a8a;">过滤</text>
+      </view>
+    </block>
+    <!-- 搜索框 -->
+    <view a:else class="flex-1 flex items-center">
+      <dingui-search-bar className="flex-1 border-none px-0" value="{{keyword}}" placeholder="{{searchBar.placeholder}}" onDmInput="handleInput" onDmClear="handleClear" />
+      <view class="ml-2 h-9 color-primary flex items-center" onTap="handleSearchInvisible">取消</view>
+    </view>
+  </view>
+  <!-- 多选模式 -->
+  <view class="absolute pin-x pin-t flex border-bottom bg-color-white items-center justify-between px-2 transition-300" style="height: 104rpx; transform: {{checkboxVisible ? 'translate3d(0, 0, 0)' : 'translate3d(0, -100%, 0)'}};">
+    <button class="bg-opacity w-6 h-6 flex items-center justify-center border-none" onTap="handleCheckboxInvisible">
+      <image class="w-5 h-5" mode="scaleToFill" src="/src/assets/icon/list/close.png"/>
+    </button>
+    <text class="color-sub-title text-sm">已选择{{checkedArray.length}}项</text>
+    <button class="bg-opacity w-6 h-6 flex items-center justify-center border-none" onTap="toggleSelectAll">
+      <image class="w-5 h-5" mode="scaleToFill" src="/src/assets/icon/list/square{{checkedArray.length === 0 ? '' : checkedArray.length === array.length ? '_check_fill' : '_check'}}.png"/>
+    </button>
+  </view>
+  <!-- 列表滚动部分 -->
+  <scroll-view class="flex-1" onScrollToLower="loadMore" scroll-y="{{true}}" lower-threshold="{{40}}">
+    <view class="relative flex p-2 items-center border-bottom" catchTap="handleSelect" onLongTap="handleCheckboxVisible" data-i="{{index}}" a:for="{{array}}">
+      <!-- 多选框 -->
+      <view class="w-6 h-6 mr-2 flex items-center justify-center transition-300 {{checkboxVisible ? 'ml-0' : '-ml-8'}}">
+        <image class="w-5 h-5" mode="scaleToFill" src="/src/assets/icon/list/{{item.checked ? 'round_check_fill' : 'round'}}.png"/>
+      </view>
+      <view class="flex-1">
+        <template is="{{bizObj.template}}" data="{{...item}}"></template>
+      </view>
+    </view>
+    <!-- loader -->
+    <e-loader type="13" size="16" className="p-2" loading="{{loading}}" noMore="{{!more && array.length !== 0}}"></e-loader>
+  </scroll-view>
+  <!-- 没有数据时的图片提示 -->
+  <view a:if="{{!loading && array.length === 0}}" style="top: 104rpx;" class="absolute pin-x pin-b flex flex-col items-center justify-center">
+    <image class="w-32" mode="widthFix" src="/src/assets/icon/list/null.svg"/>
+    <text class="text-xs mt-2 color-info">当前未请求到任何数据</text>
+  </view>
+  <!-- 过滤部件 -->
+  <view class="fixed z-1 pin transition-300 {{filterVisible ? 'bg-color-sub-title pointer-events-auto' : 'pointer-events-none'}}" catchTap="handleFilterInvisible">
+    <view class="pin-x flex flex-col pin-t h-4-5 absolute transition-300 bg-color-white {{filterVisible ? 'shadow-md' : ''}}" style="transform: {{filterVisible ? 'translate3d(0, 0, 0)' : 'translate3d(0, -100%, 0)'}};" catchTap="void">
+      <scroll-view class="flex-1" scroll-y="{{true}}">
+        <slot name="filter"></slot>
+      </scroll-view>
+      <view class="flex relative border-top">
+        <button class="w-1-2 h-10 p-0 bg-opacity m-0 border-none flex items-center justify-center color-title" onTap="handleClearFilter">
+          <view class="fa fa-eraser mr-1"/>清空
+        </button>
+        <button class="w-1-2 h-10 p-0 bg-opacity m-0 border-none flex items-center justify-center color-primary" onTap="handleSearchByFilter">
+          <view class="fa fa-search mr-1"/>搜索
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 右下角按钮组 -->
+<view class="fixed flex flex-col w-12 transition-300" style="right: 32rpx; bottom: 32rpx; transform: {{!checkboxVisible ? 'translate3d(0, 0, 0)' : 'translate3d(128rpx, 0, 0)'}};">
+  <button a:if="{{btn.position === btnPos.normal}}" a:for="{{btns}}" a:for-item="btn" data-btn="{{btn}}" onTap="handleBtn" class="shadow-md color-white border-none circle w-12 h-12 mt-2 text-lg flex items-center justify-center {{'bg-color-primary'}}">
+    <text a:if="{{btn.icon_cls}}" class="fa {{'fa-' + btn.icon_cls}}" />
+    <text a:else>{{btn.action_name}}</text>
+  </button>
+</view>
+<!-- 右下角按钮组，多选状态 -->
+<view class="fixed flex flex-col w-12 transition-300" style="right: 32rpx; bottom: 32rpx; transform: {{checkboxVisible ? 'translate3d(0, 0, 0)' : 'translate3d(128rpx, 0, 0)'}};">
+  <button a:if="{{btn.position === btnPos.edit}}" a:for="{{btns}}" a:for-item="btn" data-btn="{{btn}}" onTap="handleBtn" class="shadow-md color-white border-none circle w-12 h-12 mt-2 text-lg flex items-center justify-center {{'bg-color-primary'}}">
+    <text a:if="{{btn.icon_cls}}" class="fa {{'fa-' + btn.icon_cls}}" />
+    <text a:else>{{btn.action_name}}</text>
+  </button>
+</view>

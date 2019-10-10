@@ -1,0 +1,64 @@
+<view class="absolute pin flex flex-col overflow-x-hidden" style="background: {{background}}">
+  <!-- 表单 -->
+  <scroll-view a:if="{{bizObj.length}}" scroll-y="{{true}}" class="flex-1 pt-3">
+    <block a:for="{{bizObj}}" a:for-item="c" a:for-index="ci">
+      <!-- 组件 -->
+      <e-input a:if="{{c.component === 'e-input'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-input>
+      <e-address a:elif="{{c.component === 'e-address'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-address>
+      <e-cascader a:elif="{{c.component === 'e-cascader'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-cascader>
+      <e-date-picker a:elif="{{c.component === 'e-date-picker'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-date-picker>
+      <e-interval a:elif="{{c.component === 'e-interval'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-interval>
+      <e-dept-chooser a:elif="{{c.component === 'e-dept-chooser'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-dept-chooser>
+      <e-picker a:elif="{{c.component === 'e-picker'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-picker>
+      <e-progress-bar a:elif="{{c.component === 'e-progress-bar'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-progress-bar>
+      <e-scan a:elif="{{c.component === 'e-scan'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-scan>
+      <e-search a:elif="{{c.component === 'e-search'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-search>
+      <e-switch a:elif="{{c.component === 'e-switch'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-switch>
+      <e-text-area a:elif="{{c.component === 'e-text-area'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-text-area>
+      <e-user-chooser a:elif="{{c.component === 'e-user-chooser'}}" model="{{c}}" onValidate="{{c.validate ? 'on_' + c.fid + '_' + c.key : undefined}}"></e-user-chooser>
+      <!-- 子表 -->
+      <view a:elif="{{c.component === 'e-subform'}}" class="mb-3">
+        <block a:for="{{c.children}}" a:for-item="sf" a:for-index="sfi">
+          <!-- 子表头部 -->
+          <view class="flex items-center justify-between mb-3 ml-4 mr-2 {{sfi > 0 ? 'mt-3' : ''}}">
+            <text class="color-sub-title text-xs">{{c.label}}-{{sfi + 1}}</text>
+            <!-- 子表删除按钮 -->
+            <view onTap="handleDelete" a:if="{{c.children.length > 1 && !c.disabled}}" data-sfi="{{sfi}}" data-c="{{c}}" class="color-primary text-xs">
+              <text class="fa fa-trash mr-1"></text>删除
+            </view>
+          </view>
+          <!-- 子表组件 -->
+          <block a:for="{{sf}}" a:for-item="sc" a:for-index="sci">
+            <e-input a:if="{{sc.component === 'e-input'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-input>
+            <e-address a:elif="{{sc.component === 'e-address'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-address>
+            <e-cascader a:elif="{{sc.component === 'e-cascader'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-cascader>
+            <e-date-picker a:elif="{{sc.component === 'e-date-picker'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-date-picker>
+            <e-interval a:elif="{{sc.component === 'e-interval'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-interval>
+            <e-dept-chooser a:elif="{{sc.component === 'e-dept-chooser'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-dept-chooser>
+            <e-picker a:elif="{{sc.component === 'e-picker'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-picker>
+            <e-progress-bar a:elif="{{sc.component === 'e-progress-bar'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-progress-bar>
+            <e-scan a:elif="{{sc.component === 'e-scan'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-scan>
+            <e-search a:elif="{{sc.component === 'e-search'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-search>
+            <e-switch a:elif="{{sc.component === 'e-switch'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-switch>
+            <e-text-area a:elif="{{sc.component === 'e-text-area'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-text-area>
+            <e-user-chooser a:elif="{{sc.component === 'e-user-chooser'}}" model="{{sc}}" onValidate="{{sc.validate ? 'on_' + sc.fid + '_' + sc.key : undefined}}"></e-user-chooser>
+          </block>
+        </block>
+        <!-- 子表增行按钮 -->
+        <button a:if="{{!c.disabled}}" onTap="handleAdd" data-ci="{{ci}}" class="flex items-center justify-center bg-color-white color-primary border-none radius-none">
+          <text class="text-2xl mr-1">+</text>添加{{c.label}}
+        </button>
+      </view>
+    </block>
+  </scroll-view>
+  <!-- loader -->
+  <view a:else class="flex-1 flex items-center justify-center">
+    <e-loader type="16" loading="{{true}}" loadingText="数据加载中"></e-loader>
+  </view>
+  <!-- 底部按钮组 -->
+  <view a:if="{{btns.length && !disabled}}" class="flex flex-row bg-color-white z-1" style="box-shadow: 0 0 8rpx rgba(25, 31, 37, .12);">
+    <button a:if="{{btn.position === btnPos}}" a:for="{{btns}}" a:for-item="btn" data-btn="{{btn}}" onTap="handleBtn" class="border-none radius-none bg-opacity flex-1 text-lg flex items-center justify-center {{'color-' + btn.xtype}}">
+      <text class="fa mr-1 {{'fa-' + btn.icon_cls}}"/>{{btn.action_name}}
+    </button>
+  </view>
+</view>

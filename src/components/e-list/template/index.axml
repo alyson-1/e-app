@@ -1,0 +1,204 @@
+<!-- 耗材 -->
+<template name="cons">
+  <view >
+    <view class="color-big-title text-xl my-1">{{cons_name}}</view>
+    <view>
+      <text class="color-label">耗材编号：</text>
+      <text class="color-bg-title">{{cons_code}}</text>
+    </view>
+    <view>
+      <text class="color-label">所属分类：</text>
+      <text class="color-bg-title">{{item_name}}</text>
+    </view>
+    <view>
+      <text class="color-label">规格型号：</text>
+      <text class="color-bg-title">{{cons_standard}}</text>
+    </view>
+    <view>
+      <text class="color-label">计量单位：</text>
+      <text class="color-bg-title">{{cons_unit}}</text>
+    </view>
+  </view>
+</template>
+<!-- 耗材分类 -->
+<template name="class">
+  <view class="flex items-center justify-between my-1">
+    <text class="flex-1 color-bg-title text-lg">{{item_name}}</text>
+    <text class="color-label text-xs">{{create_on.split('T')[0]}}</text>
+  </view>
+  <view>
+    <text class="color-label">上级分类：</text>
+    <text class="color-bg-title">{{pid || '无'}}</text>
+  </view>
+  <text>
+    <text class="color-label">备注：</text>
+    <text class="color-bg-title">{{remark || '无'}}</text>
+  </text>
+</template>
+<!-- 仓库 -->
+<template name="wh">
+  <view >
+    <view class="color-big-title text-xl my-1">{{wh_name}}</view>
+    <view>
+      <text class="color-label">仓库编号：</text>
+      <text class="color-bg-title">{{wh_code}}</text>
+    </view>
+  </view>
+</template>
+<!-- 供应商 -->
+<template name="supplier">
+  <view >
+    <view class="color-big-title text-xl my-1">{{name}}</view>
+    <view>
+      <text class="color-label">供应商编号：</text>
+      <text class="color-bg-title">{{code}}</text>
+    </view>
+    <view>
+      <text class="color-label">联系人：</text>
+      <text class="color-bg-title">{{contact}}</text>
+    </view>
+    <view>
+      <text class="color-label">电话：</text>
+      <text class="color-bg-title">{{tel}}</text>
+    </view>
+    <view>
+      <text class="color-label">地址：</text>
+      <text class="color-bg-title">{{address}}</text>
+    </view>
+  </view>
+</template>
+<!-- 请购单 -->
+<template name="request">
+  <view class="flex items-center">
+    <view class="flex flex-col items-center mr-2">
+      <view class="circle overflow-hidden shadow-md">
+        <image a:if="{{apply_person[0].avatar}}" class="block" style="height: 80rpx; width: 80rpx;" mode="aspectFill" src="{{apply_person[0].avatar}}"/>
+        <view a:else class="bg-color-primary color-white text-2xl flex items-center justify-center" style="height: 80rpx; width: 80rpx;">{{apply_person[0].name[0]}}</view>
+      </view>
+      <text class="mt-2 color-title text-xs">{{apply_person[0].name}}</text>
+    </view>
+    <view class="flex flex-col">
+      <view class="text-sm">
+        <text class="color-label">请购单号：</text>
+        <text class="color-bg-title">{{doc_number}}</text>
+      </view>
+      <view class="mt-1 text-sm">
+        <text class="color-label">请购日期：</text>
+        <text class="color-bg-title">{{apply_date.slice(0, 10)}}</text>
+      </view>
+      <view class="mt-1 text-sm">
+        <text class="color-label">请购部门：</text>
+        <text class="color-bg-title">{{apply_dept[0].name}}</text>
+      </view>
+      <view class="mt-1">
+        <text class="font-bold color-{{doc_status == 'draft' ? 'info' : doc_status == 'processing' ? 'warning' : doc_status == 'agree' ? 'success' : 'danger'}}">{{doc_status_text}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 采购单 -->
+<template name="po">
+  <view >
+    <view class="text-sm">
+      <text class="color-label">订单编号：</text>
+      <text class="color-bg-title">{{doc_number}}</text>
+    </view>
+    <view class="mt-1 text-sm">
+      <text class="color-label">订单日期：</text>
+      <text class="color-bg-title">{{doc_date.slice(0, 10)}}</text>
+    </view>
+    <view class="mt-1 text-sm">
+      <text class="color-label">供应商：</text>
+      <text class="color-bg-title">{{supplier_name}}</text>
+    </view>
+    <view class="mt-1">
+      <text class="font-bold color-{{doc_status == 'draft' ? 'info' : doc_status == 'processing' ? 'warning' : doc_status == 'agree' ? 'success' : 'danger'}}">{{doc_status_text}}</text>
+    </view>
+  </view>
+</template>
+<!-- 领用单 -->
+<template name="out">
+  <view class="flex items-center">
+    <view class="flex flex-col items-center mr-2">
+      <view class="circle overflow-hidden shadow-md">
+        <image a:if="{{stockout_person[0].avatar}}" class="block" style="height: 80rpx; width: 80rpx;" mode="aspectFill" src="{{stockout_person[0].avatar}}"/>
+        <view a:else class="bg-color-primary color-white text-2xl flex items-center justify-center" style="height: 80rpx; width: 80rpx;">{{stockout_person[0].name[0]}}</view>
+      </view>
+      <text class="mt-2 color-title text-xs">{{stockout_person[0].name}}</text>
+    </view>
+    <view class="flex flex-col">
+      <view class="text-sm">
+        <text class="color-label">领用单号：</text>
+        <text class="color-bg-title">{{doc_number}}</text>
+      </view>
+      <view class="mt-1 text-sm">
+        <text class="color-label">领用日期：</text>
+        <text class="color-bg-title">{{stockout_date.slice(0, 10)}}</text>
+      </view>
+      <view class="mt-1 text-sm">
+        <text class="color-label">领用部门：</text>
+        <text class="color-bg-title">{{stockout_dept[0].name}}</text>
+      </view>
+      <view class="mt-1 text-sm">
+        <text class="color-label">仓库：</text>
+        <text class="color-bg-title">{{wh_name}}</text>
+      </view>
+      <view class="mt-1">
+        <text class="font-bold color-{{doc_status == 'draft' ? 'info' : doc_status == 'processing' ? 'warning' : doc_status == 'agree' ? 'success' : 'danger'}}">{{doc_status_text}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 入库单 -->
+<template name="in">
+  <view >
+    <view class="text-sm">
+      <text class="color-label">入库单号：</text>
+      <text class="color-bg-title">{{doc_number}}</text>
+    </view>
+    <view class="mt-1 text-sm">
+      <text class="color-label">入库日期：</text>
+      <text class="color-bg-title">{{stockin_date.slice(0, 10)}}</text>
+    </view>
+    <view class="mt-1 text-sm">
+      <text class="color-label">供应商：</text>
+      <text class="color-bg-title">{{supplier_name}}</text>
+    </view>
+    <view class="mt-1 text-sm">
+      <text class="color-label">仓库：</text>
+      <text class="color-bg-title">{{wh_name}}</text>
+    </view>
+    <view class="mt-1 text-sm">
+      <text class="color-label">类别：</text>
+      <text class="color-bg-title">{{item_name}}</text>
+    </view>
+    <view class="mt-1">
+      <text class="font-bold color-{{doc_status == 'draft' ? 'info' : doc_status == 'processing' ? 'warning' : doc_status == 'agree' ? 'success' : 'danger'}}">{{doc_status_text}}</text>
+    </view>
+  </view>
+</template>
+<!-- 库存 -->
+<template name="inventory">
+  <view >
+    <view>
+      <text class="color-label">耗材编号：</text>
+      <text class="color-bg-title">{{cons_code}}</text>
+    </view>
+    <view>
+      <text class="color-label">耗材名称：</text>
+      <text class="color-bg-title">{{cons_name}}</text>
+    </view>
+    <view>
+      <text class="color-label">所属分类：</text>
+      <text class="color-bg-title">{{item_name}}</text>
+    </view>
+    <view>
+      <text class="color-label">库存量：</text>
+      <text class="color-bg-title">{{qty}}</text>
+    </view>
+    <view>
+      <text class="color-label">仓库：</text>
+      <text class="color-bg-title">{{wh_name}}</text>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,54 @@
+{
+	"pages": [
+		"pages/index/index",
+
+		"pages/home/index",
+
+		"pages/hy/base/cons/form/index",
+		"pages/hy/base/cons/list/index",
+
+		"pages/hy/base/wh/form/index",
+		"pages/hy/base/wh/list/index",
+
+		"pages/hy/base/supplier/form/index",
+		"pages/hy/base/supplier/list/index",
+
+		"pages/hy/base/class/tree/index",
+		"pages/hy/base/class/form/index",
+
+    "pages/hy/base/inventory/list/index",
+		"pages/hy/base/inventory/form/index",
+
+		"pages/hy/request/form/index",
+		"pages/hy/request/list/index",
+
+		"pages/hy/po/form/index",
+		"pages/hy/po/list/index",
+
+    "pages/hy/in/form/index",
+		"pages/hy/in/list/index",
+
+    "pages/hy/out/form/index",
+		"pages/hy/out/list/index",
+
+    "pages/hy/readyOut/list/index"
+	],
+	"window": {
+		"defaultTitle": "耗材管理系统",
+		"titleBarColor": "",
+		"pullRefresh": false,
+		"allowsBounceVertical": "YES"
+	},
+	"tabBar": {
+		"textColor": "#8A8A8A",
+		"selectedColor": "#3296FA",
+		"backgroundColor": "",
+		"items": [{
+				"pagePath": "pages/home/index",
+				"name": "菜单",
+				"icon": "/src/assets/icon/tabBar/apps.png",
+				"activeIcon": "/src/assets/icon/tabBar/apps_active.png"
+			}
+		]
+	}
+}

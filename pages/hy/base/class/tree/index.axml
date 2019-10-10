@@ -1,0 +1,23 @@
+<view class="absolute pin flex flex-col overflow-x-hidden" style="background: {{background}}">
+  <!-- 面包屑 -->
+  <e-breadcrumb values="{{breadcrumb}}" className="relative border-bottom" onItemTap="handleBreadcrumbTap"/>
+  <!-- 当前节点 -->
+  <scroll-view class="flex flex-1 flex-col" scroll-y="{{true}}">
+    <view class="flex items-center mx-2 mb-3 {{index === 0 ? 'mt-2' : ''}}" a:for="{{array}}" data-node="{{item}}" onTap="handleTap">
+      <view data-i="{{index}}" catchTap="radioChange">
+        <image class="w-5 h-5 mr-2 block" mode="scaleToFill" src="/src/assets/icon/list/{{currentIndex === index ? 'round_check_fill' : 'round'}}.png"/>
+      </view>
+      <text class="color-title flex-1 mr-2">{{item[bindkey]}}</text>
+      <view class="color-primary flex items-center" data-i="{{index}}" catchTap="handleNext" a:if="{{item.children.length}}">
+        <text class="fa fa-level-down"/>下级
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<!-- 动态按钮 -->
+<view class="fixed flex flex-col w-12 transition-300" style="right: 32rpx; bottom: 32rpx;">
+  <button a:if="{{btn.position === btnPos}}" a:for="{{btns}}" a:for-item="btn" data-btn="{{btn}}" onTap="handleBtn" class="shadow-md color-white border-none circle w-12 h-12 mt-2 text-lg flex items-center justify-center {{'bg-color-primary'}}">
+    <text a:if="{{btn.icon_cls}}" class="fa {{'fa-' + btn.icon_cls}}" />
+    <text a:else>{{btn.action_name}}</text>
+  </button>
+</view>

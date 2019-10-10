@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "e-modal": "/src/components/common/e-modal/index"
+	}
+}

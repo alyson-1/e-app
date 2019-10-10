@@ -1,0 +1,18 @@
+<view class="{{model.sfi !== undefined ? 'relative border-bottom' : 'mb-3'}} p-2 text-base flex items-center bg-color-white" onTap="handleAdd">
+  <view class="flex items-center w-24" hidden="{{!model.label}}">
+    <view class="w-2 h-4 color-danger flex items-center justify-center" style="visibility: {{model.necessary ? 'visible' : 'hidden'}};">*</view>
+    <text class="flex-1 h-4 no-wrap {{model.disabled ? 'color-label' : 'color-title'}}">{{model.label}}</text>
+  </view>
+  <view class="relative min-h-9 pl-1 pr-2 -mb-2 flex flex-1 flex-wrap">
+    <view style="margin-top: 4rpx; margin-bottom: 20rpx; background-color: #f4f4f5; color: #909399; border: 1px solid #e9e9eb;" class="h-6 pl-2 pr-1 mr-2 flex items-center justify-center radius-2" catchTap="void" a:if="{{model.value.length}}" a:for="{{model.value}}">
+      <text style="height: 12px;" class="mr-1 text-xs">{{item.name}}</text>
+      <view a:if="{{!model.disabled}}" class="h-5 w-5 flex items-center justify-center" data-item-index="{{index}}" catchTap="handleDelete">
+        <image style="height: 12px; width: 12px;" mode="scaleToFill" src="/src/assets/icon/base/round_close_fill.png"/>
+      </view>
+    </view>
+    <input class="p-0 h-7 bg-opacity flex-1 pointer-events-none" a:if="{{!model.value.length}}" placeholder="{{model.placeholder}}"/>
+  </view>
+  <view class="flex items-center justify-center h-5 w-5 color-title" catchTap="handleAdd">
+    <image class="w-4 h-4" mode="scaleToFill" src="/src/assets/icon/base/right.png"/>
+  </view>
+</view>

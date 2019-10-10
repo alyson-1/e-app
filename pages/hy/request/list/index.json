@@ -1,0 +1,11 @@
+{
+  "pullRefresh": true,
+  "usingComponents":{
+    "e-list": "/src/components/e-list/index",
+    "e-dialog": "/src/components/base/e-dialog/index",
+    "e-picker": "/src/components/base/e-picker/index",
+    "e-input": "/src/components/base/e-input/index",
+    "e-interval": "/src/components/base/e-interval/index",
+    "e-dept-chooser": "/src/components/base/e-dept-chooser/index"
+  }
+}

@@ -1,0 +1,15 @@
+<view class="{{model.sfi !== undefined ? 'relative border-bottom' : 'mb-3'}} p-2 text-base flex items-center bg-color-white">
+  <view class="flex items-center w-24" hidden="{{!model.label}}">
+    <view class="w-2 h-4 color-danger flex items-center justify-center" style="visibility: {{model.necessary ? 'visible' : 'hidden'}};">*</view>
+    <text class="flex-1 h-4 no-wrap {{model.disabled ? 'color-label' : 'color-title'}}">{{model.label}}</text>
+  </view>
+  <view class="flex">
+    <view class="flex" catchTap="handleTapStart" onLongTap="clearStart">
+      <input class="p-0 h-7 bg-color-white flex-1 text-center text-xs pointer-events-none" value="{{model.value[0]}}" placeholder="{{model.placeholder[0]}}" />
+    </view>
+    <text class="mx-1 flex items-center color-title text-xs">至</text>
+    <view class="flex" catchTap="handleTapEnd" onLongTap="clearEnd">
+      <input class="p-0 h-7 bg-color-white flex-1 text-center text-xs pointer-events-none" value="{{model.value[1]}}" placeholder="{{model.placeholder[1]}}" />
+    </view>
+  </view>
+</view>

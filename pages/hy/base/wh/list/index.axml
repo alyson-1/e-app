@@ -1,0 +1,6 @@
+<e-list bizObj="{{bizObj}}" btnPos="{{btnPos}}" background="{{background}}" searchBar="{{searchBar}}">
+  <view slot="filter" style="background: rgba(25, 31, 37, .05);">
+    <e-input model="{{filter[0]}}"></e-input>
+    <e-input model="{{filter[1]}}"></e-input>
+  </view>
+</e-list>

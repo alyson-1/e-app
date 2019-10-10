@@ -1,0 +1,43 @@
+<!-- 完整模板。显示头像和名字，适合选择多人 -->
+<template name="complete">
+  <view class="{{sfi !== undefined ? 'relative border-bottom' : 'mb-3'}} p-2 text-base flex flex-col bg-color-white">
+    <view class="flex items-center h-7" hidden="{{!label}}">
+      <view class="w-2 color-danger" style="visibility: {{necessary ? 'visible' : 'hidden'}};">*</view>
+      <text class="flex-1 h-4 no-wrap {{disabled ? 'color-label' : 'color-title'}}">{{label}}</text>
+      <text class="text-xs color-label">{{value.length || 0}}/{{max}}</text>
+    </view>
+    <view class="flex flex-1 flex-wrap pl-2 -mb-2">
+      <view class="relative flex flex-col items-center pr-3 pb-2" a:for="{{value}}">
+        <e-avatar size="72" user="{{item}}" onUserTap="handleAdd">
+          <text slot-scope="props" class="mt-2 color-title text-xs">{{props.userInfo.name}}</text>
+        </e-avatar>
+        <view a:if="{{!disabled}}" class="w-4 h-4 absolute circle bg-color-white" catchTap="handleDelete" data-i="{{index}}" style="top: -4rpx; right: 18rpx; background-image: url('/src/assets/icon/base/round_close_fill.png'); background-size: 32rpx 32rpx;" />
+      </view>
+      <button style="border: 1rpx dashed {{disabled ? 'rgba(25, 31, 37, .28)' : '#3296FA'}};" class="flex items-center justify-center circle w-9 h-9 mb-2 bg-opacity" disabled="{{disabled}}" onTap="handleAdd">
+        <text class="text-2xl color-{{disabled ? 'label' : 'primary'}}">+</text>
+      </button>
+    </view>
+  </view>
+</template>
+<!-- 精简模板，不显示头像，适合选择单个人员 -->
+<template name="simple">
+  <view class="{{sfi !== undefined ? 'relative border-bottom' : 'mb-3'}} p-2 text-base flex items-center bg-color-white" onTap="handleAdd">
+    <view class="flex items-center w-24" hidden="{{!label}}">
+      <view class="w-2 h-4 color-danger flex items-center justify-center" style="visibility: {{necessary ? 'visible' : 'hidden'}};">*</view>
+      <text class="flex-1 h-4 no-wrap {{disabled ? 'color-label' : 'color-title'}}">{{label}}</text>
+    </view>
+    <view class="relative min-h-9 pl-1 pr-2 -mb-2 flex flex-1 flex-wrap">
+      <view style="margin-top: 4rpx; margin-bottom: 20rpx; background-color: #f4f4f5; color: #909399; border: 1px solid #e9e9eb;" class="h-6 pl-2 pr-1 mr-2 flex items-center justify-center radius-2" catchTap="void" a:if="{{value.length}}" a:for="{{value}}">
+        <text style="height: 12px;" class="mr-1 text-xs">{{item.name}}</text>
+        <view a:if="{{!disabled}}" class="h-5 w-5 flex items-center justify-center" data-i="{{index}}" catchTap="handleDelete">
+          <image style="height: 12px; width: 12px;" mode="scaleToFill" src="/src/assets/icon/base/round_close_fill.png"/>
+        </view>
+      </view>
+      <input class="p-0 h-7 bg-opacity flex-1 pointer-events-none" a:if="{{!value.length}}" placeholder="{{placeholder}}"/>
+    </view>
+    <view class="flex items-center justify-center h-5 w-5 color-title" catchTap="handleAdd">
+      <image class="w-4 h-4" mode="scaleToFill" src="/src/assets/icon/base/friend_add.png"/>
+    </view>
+  </view>
+</template>
+<template is="{{model.type}}" data="{{...model}}"></template>

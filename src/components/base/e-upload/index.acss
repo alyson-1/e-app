@@ -1,0 +1,52 @@
+@import "../base-style.acss";
+
+.files-wrapper {
+	display: flex;
+	overflow: hidden;
+	padding: 8rpx;
+	width: 100%;
+	max-height: 220rpx;
+	min-height: 160rpx;
+	border: 1rpx dashed rgba(0,0,0,.2);
+	border-radius: 10rpx;
+	align-items: center;
+	justify-content: center;
+}
+
+.files-wrapper>.notice {
+	position: absolute;
+	top: 8rpx;
+	right: 8rpx;
+	opacity: .5;
+}
+
+.uploader-wrapper {
+	z-index: 1;
+	background-color: rgba(0,0,0,0);
+	transition: background-color .3s;
+	pointer-events: none;
+}
+
+.uploader-wrapper-open {
+	pointer-events: auto;
+}
+
+.uploader-wrapper>.uploader-btns {
+	position: absolute;
+	display: flex;
+	width: 208rpx;
+	height: 208rpx;
+	transform: translate3d(-48rpx,-160rpx,0) rotateZ(-45deg);
+	transform-origin: 48rpx 160rpx;
+	flex-wrap: wrap;
+}
+
+.uploader-wrapper>.uploader-btns>.uploader-btn {
+  color: #ffffff;
+	transition: transform .3s;
+	transform: rotateZ(45deg) scale(0,0);
+}
+
+.uploader-wrapper>.uploader-btns>.uploader-btn-show {
+	transform: rotateZ(45deg) scale(1,1);
+}

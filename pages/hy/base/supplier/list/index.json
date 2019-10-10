@@ -1,0 +1,7 @@
+{
+  "pullRefresh": true,
+  "usingComponents":{
+    "e-list": "/src/components/e-list/index",
+    "e-input": "/src/components/base/e-input/index"
+  }
+}

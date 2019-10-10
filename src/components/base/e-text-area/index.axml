@@ -1,0 +1,10 @@
+<view class="{{model.sfi !== undefined ? 'relative border-bottom' : 'mb-3'}} p-2 text-base flex flex-col bg-color-white">
+  <view class="flex items-center h-7" onTap="handleTap" hidden="{{!model.label}}">
+    <view class="w-2 color-danger" style="visibility: {{model.necessary ? 'visible' : 'hidden'}};">*</view>
+    <text class="flex-1 h-4 no-wrap {{model.disabled ? 'color-label' : 'color-title'}}">{{model.label}}</text>
+    <text class="text-xs color-label">{{model.maxlength === -1 ? model.value.length : model.value.length + '/' + model.maxlength}}</text>
+  </view>
+  <view class="overflow-hidden">
+    <textarea class="relative pt-0 pr-0 pb-6 pl-2 -mb-6 bg-opacity" value="{{model.value}}" focus="{{model.focus}}" disabled="{{model.disabled}}" placeholder="{{model.placeholder}}" onInput="handleInput" onBlur="handleBlur" onFocus="handleFocus" onConfirm="handleConfirm" auto-height="{{model.autoHeight}}" maxlength="{{model.maxlength}}"/>
+  </view>
+</view>

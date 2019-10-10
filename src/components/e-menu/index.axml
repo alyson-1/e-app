@@ -1,0 +1,29 @@
+<scroll-view scroll-y="{{true}}" class="absolute pin" style="background: {{background}}">
+  <block a:if="{{menuGroup.length}}">
+    <!-- 菜单组 -->
+    <view a:for="{{menuGroup}}" class="bg-color-white {{index === menuGroup.length - 1 ? '' : 'mb-4'}}">
+      <!-- 菜单组标题 -->
+      <view onTap="handleSwitch" data-i="{{index}}" a:if="{{item.title}}" class="flex items-center justify-between px-2 py-3">
+        <text class="color-title text-lg">{{item.title}}</text>
+        <text class="text-xs color-sub-title">{{opened[index] !== false ? '收起' : '展开'}}</text>
+      </view>
+      <!-- 菜单 -->
+      <view a:if="{{opened[index] !== false}}" class="flex flex-wrap relative pb-3">
+        <block a:for="{{item.children}}" a:for-item="menu">
+          <view style="width: {{100/column}}%; padding-top: {{100/column}}%;" class="relative">
+            <view class="pin absolute flex flex-col items-center justify-center">
+              <button onTap="handleTap" class="flex items-center border-none justify-center radius-4 h-12 w-12 text-2xl {{'bg-color-' + menu.xtype}}" data-menu="{{menu}}">
+                <text class="color-white fa {{'fa-' + menu.icon_cls}}" />
+              </button>
+              <text class="absolute w-full text-center pin-b text-xs color-title">{{menu.menu_name}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+  <!-- loader -->
+  <view a:else class="absolute pin flex items-center justify-center">
+    <e-loader type="5" loading="{{true}}" loadingText="菜单加载中" />
+  </view>
+</scroll-view>
